@@ -15,6 +15,14 @@ public class TestApplication {
 		} catch (Exception e) {
 
 		}
+		try {
+			Integer sl = Integer.valueOf(System.getProperty("bodySize"));
+			ConfigBean.body = StringUtils.repeat("A",sl);
+		} catch (Exception e) {
+
+		}
+
+
 
 		SpringApplication.run(TestApplication.class, args);
 	}

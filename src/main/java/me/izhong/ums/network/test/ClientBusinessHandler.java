@@ -39,7 +39,7 @@ public class ClientBusinessHandler extends ChannelInboundHandlerAdapter {
             String msg = bs.getPayload();
             if(ConfigBean.showLog)
                 log.info("receive:{}", msg);
-            long v = Long.valueOf(msg);
+            long v = Long.valueOf(msg.split(",")[0]);
             long now = System.currentTimeMillis();
             statisticsService.accumulate("TEST","TEST_TCP", "SUCC", 1, now - v);
         } else {

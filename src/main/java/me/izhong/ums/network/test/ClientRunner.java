@@ -107,7 +107,9 @@ public class ClientRunner implements ApplicationRunner{
             while (true) {
                 rateLimiter.acquire();
                 long now = System.currentTimeMillis();
-                LongTCPMsg msg = new LongTCPMsg(Long.valueOf(now).toString());
+                String body = StringUtils.repeat('A',258);
+
+                LongTCPMsg msg = new LongTCPMsg(Long.valueOf(now).toString() + "," + ConfigBean.body);
                 //log.info("runner");
                 channel.writeAndFlush(msg);
                 countDownLatch.countDown();

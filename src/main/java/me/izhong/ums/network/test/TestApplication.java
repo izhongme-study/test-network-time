@@ -1,5 +1,6 @@
 package me.izhong.ums.network.test;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -7,13 +8,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class TestApplication {
 
 	public static void main(String[] args) {
-		boolean showlog = true;
 		try {
-			showlog = Boolean.valueOf(System.getProperty("showlog"));
-		}catch (Exception e) {
+			String sl = System.getProperty("showlog");
+			if(StringUtils.equals("true",sl))
+				ConfigBean.showLog = true;
+		} catch (Exception e) {
 
 		}
-		ConfigBean.showLog = showlog;
 
 		SpringApplication.run(TestApplication.class, args);
 	}
